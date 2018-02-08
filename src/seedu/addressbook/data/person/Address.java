@@ -20,6 +20,7 @@ public class Address {
     public static final int UNIT_INDEX = 2;
     public static final int POSTAL_CODE_INDEX = 3;
 
+    public final String value;
     private Block block;
     private Street street;
     private Unit unit;
@@ -38,6 +39,7 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         splitAddress(address);
+        this.value = this.toString();
     }
 
     private void splitAddress(String address) {
