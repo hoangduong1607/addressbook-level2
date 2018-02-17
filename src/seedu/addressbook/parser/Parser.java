@@ -3,6 +3,7 @@ package seedu.addressbook.parser;
 import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -236,7 +237,9 @@ public class Parser {
 
         // keywords delimited by whitespace
         final String[] keywords = matcher.group("keywords").split("\\s+");
-        final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
+        List<String> keywordsList = Arrays.asList(keywords);
+        keywordsList.replaceAll(String::toLowerCase);
+        final Set<String> keywordSet = new HashSet<>(keywordsList);
         return new FindCommand(keywordSet);
     }
 
